@@ -313,9 +313,9 @@ export default function Terminal() {
         </div>
 
         {/* Terminal Area */}
-        <div className="bg-terminal flex flex-col h-full">
+        <div className="bg-terminal flex flex-col h-full min-h-0">
           {/* Terminal Header */}
-          <div className="bg-secondary/50 border-b border-primary/30 p-3 flex items-center justify-between">
+          <div className="bg-secondary/50 border-b border-primary/30 p-3 flex items-center justify-between flex-shrink-0">
             <div className="flex items-center space-x-4">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -335,7 +335,7 @@ export default function Terminal() {
           <div
             ref={terminalOutputRef}
             data-testid="terminal-output"
-            className="flex-1 p-4 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary/50 hover:scrollbar-thumb-primary/70"
+            className="flex-1 p-4 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary/50 hover:scrollbar-thumb-primary/70 min-h-0"
           >
             <div className="space-y-1">
               {terminalLines.map((line) => (
@@ -368,8 +368,8 @@ export default function Terminal() {
             </div>
           </div>
 
-          {/* Command Input */}
-          <div className="bg-secondary/30 border-t border-primary/30 p-4">
+          {/* Command Input - Fixed at bottom */}
+          <div className="bg-secondary/30 border-t border-primary/30 p-4 flex-shrink-0">
             <div className="flex items-center space-x-2">
               <span className="text-primary terminal-glow">cybersec@simulator:~$</span>
               <input
