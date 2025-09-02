@@ -369,10 +369,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (command === "clear") {
         output = "[SYSTEM] Terminal cleared";
       } else if (command === "help") {
-        output = "Available commands: 1-9, clear, help, modmenu\nUse the menu on the left for detailed descriptions";
+        output = "Available commands: 1-10, clear, help, modmenu\nUse the menu on the left for detailed descriptions";
       } else if (command === "modmenu") {
         output = "[MOD] ⚠️ ADVANCED MOD MENU ACTIVATED ⚠️\n[MOD] Warning: These are advanced educational simulations\n[MOD] Commands: a1-a9 or use the Advanced Mod Menu interface\n[MOD] Type 'help' to return to standard commands\n[MOD] Educational purposes only - Real usage is illegal!";
-      } else if (command === "accounthacker") {
+      } else if (command === "10" || command === "accounthacker") {
         output = "[ACCOUNT] SOCIAL MEDIA ACCOUNT HACKER MENU\n[ACCOUNT] Available platforms:\n[ACCOUNT] • roblox - Roblox gaming platform\n[ACCOUNT] • google - Google/Gmail accounts\n[ACCOUNT] • facebook - Facebook/Meta social media\n[ACCOUNT] • snapchat - Snapchat multimedia app\n[ACCOUNT] • tiktok - TikTok content platform\n[ACCOUNT] Type the platform name to execute breach";
       } else if (commands[command as keyof typeof commands]) {
         const commandObj = commands[command as keyof typeof commands];

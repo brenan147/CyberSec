@@ -84,7 +84,7 @@ const menuCommands: MenuCommand[] = [
     category: "INFO",
   },
   {
-    id: "accounthacker",
+    id: "10",
     name: "Account Hacker",
     description: "⚠️ Social media breach simulations",
     category: "ACCOUNT",
@@ -166,7 +166,7 @@ const modMenuCommands: ModMenuCommand[] = [
     danger: true,
   },
   {
-    id: "accounthacker",
+    id: "10",
     name: "Account Hacker",
     description: "Social media platform breaches",
     category: "ACCOUNT",
