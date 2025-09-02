@@ -94,6 +94,28 @@
   .scroll-smooth {
     scroll-behavior: smooth;
   }
+
+  /* Custom scrollbar styles for terminal */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+  }
+
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .scrollbar-track-transparent::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .scrollbar-thumb-primary\/50::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.5);
+    border-radius: 4px;
+  }
+
+  .hover\:scrollbar-thumb-primary\/70:hover::-webkit-scrollbar-thumb {
+    background: rgba(0, 255, 0, 0.7);
+  }
 }
 
 @keyframes blink {

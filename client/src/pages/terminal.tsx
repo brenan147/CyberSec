@@ -251,7 +251,7 @@ export default function Terminal() {
 
       <div className="grid grid-cols-[300px_1fr] h-[calc(100vh-40px)]">
         {/* Sidebar Menu */}
-        <div className="bg-secondary border-r border-primary/30 p-4 h-full overflow-y-auto">
+        <div className="bg-secondary border-r border-primary/30 p-4 h-full overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary/50 hover:scrollbar-thumb-primary/70">
           <div className="mb-6">
             <h1 className="text-primary text-xl font-semibold terminal-glow mb-2">
               CyberSec Terminal
@@ -335,7 +335,7 @@ export default function Terminal() {
           <div
             ref={terminalOutputRef}
             data-testid="terminal-output"
-            className="flex-1 p-4 overflow-y-auto scroll-smooth"
+            className="flex-1 p-4 overflow-y-auto scroll-smooth scrollbar-thin scrollbar-track-transparent scrollbar-thumb-primary/50 hover:scrollbar-thumb-primary/70"
           >
             <div className="space-y-1">
               {terminalLines.map((line) => (
