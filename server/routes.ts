@@ -257,6 +257,95 @@ const commands = {
   }
 };
 
+// Account hacker simulations
+const accountHackerCommands = {
+  'roblox': {
+    name: 'Roblox Account Breach',
+    simulate: () => [
+      '[ACCOUNT] ⚠️ EDUCATIONAL SIMULATION ONLY ⚠️',
+      '[ROBLOX] Initializing Roblox account penetration test...',
+      '[ROBLOX] Target: user_example123@email.com',
+      '[ROBLOX] Method: Credential stuffing attack (SIMULATION)',
+      '[ROBLOX] Testing 15,000 leaked password combinations...',
+      '[ROBLOX] Password found: "robloxfan2019" (FAKE DATA)',
+      '[ROBLOX] 2FA bypass: SIM swapping simulation (THEORETICAL)',
+      '[ROBLOX] Account access: GRANTED (SIMULATION)',
+      '[ROBLOX] Robux balance: 2,450 R$ (FAKE)',
+      '[ROBLOX] Premium subscription: Active until 2025-06-15',
+      '[WARNING] Real account hacking destroys lives and is a federal crime',
+      '[COMPLETE] Educational demonstration finished'
+    ]
+  },
+  'google': {
+    name: 'Google Account Compromise',
+    simulate: () => [
+      '[ACCOUNT] Google workspace penetration simulation',
+      '[GOOGLE] Target: business.user@company.com',
+      '[GOOGLE] Method: OAuth token hijacking (SIMULATION)',
+      '[GOOGLE] Phishing email sent: "Security Alert" (FAKE)',
+      '[GOOGLE] User clicked malicious link (SIMULATION)',
+      '[GOOGLE] Access token captured: ya29.a0Ae4lv... (EXAMPLE)',
+      '[GOOGLE] Gmail access: 12,847 emails scanned (FAKE)',
+      '[GOOGLE] Google Drive: 2.3GB confidential files (SIMULATION)',
+      '[GOOGLE] Google Photos: 1,547 personal images accessed',
+      '[GOOGLE] Location history: 2 years of tracking data',
+      '[WARNING] Google accounts control entire digital lives',
+      '[COMPLETE] Privacy awareness demonstration complete'
+    ]
+  },
+  'facebook': {
+    name: 'Facebook Account Takeover',
+    simulate: () => [
+      '[ACCOUNT] Facebook/Meta platform breach simulation',
+      '[FACEBOOK] Target: social_butterfly_2024',
+      '[FACEBOOK] Method: Social engineering + password reset',
+      '[FACEBOOK] Phone number discovered: +1-555-0123 (FAKE)',
+      '[FACEBOOK] Security questions answered via OSINT',
+      '[FACEBOOK] Password reset email intercepted (SIMULATION)',
+      '[FACEBOOK] Account access: GRANTED (FAKE)',
+      '[FACEBOOK] Friends list: 847 contacts exposed',
+      '[FACEBOOK] Private messages: 5 years of conversations',
+      '[FACEBOOK] Photo metadata: Location tracking enabled',
+      '[WARNING] Social media breaches expose entire social networks',
+      '[COMPLETE] Social engineering awareness finished'
+    ]
+  },
+  'snapchat': {
+    name: 'Snapchat Account Infiltration',
+    simulate: () => [
+      '[ACCOUNT] Snapchat multimedia breach simulation',
+      '[SNAPCHAT] Target: snap_user_cool',
+      '[SNAPCHAT] Method: SIM swapping + phone verification bypass',
+      '[SNAPCHAT] Phone carrier social engineering (SIMULATION)',
+      '[SNAPCHAT] SMS verification code: 847295 (FAKE)',
+      '[SNAPCHAT] Account recovery: SUCCESSFUL (SIMULATION)',
+      '[SNAPCHAT] Snap Map location: Last seen 2.1 miles away',
+      '[SNAPCHAT] Saved photos: 127 images in memories',
+      '[SNAPCHAT] Friend streaks: 15 active conversations',
+      '[SNAPCHAT] Snap score: 45,672 (FAKE DATA)',
+      '[WARNING] Multimedia apps expose intimate personal moments',
+      '[COMPLETE] Digital privacy education complete'
+    ]
+  },
+  'tiktok': {
+    name: 'TikTok Account Hijacking',
+    simulate: () => [
+      '[ACCOUNT] TikTok content creator account breach',
+      '[TIKTOK] Target: @viral_creator_2024',
+      '[TIKTOK] Method: Malware keylogger + session hijacking',
+      '[TIKTOK] Infected device: iPhone 15 Pro (SIMULATION)',
+      '[TIKTOK] Login credentials captured (FAKE)',
+      '[TIKTOK] Creator Fund balance: $2,847.23 (SIMULATION)',
+      '[TIKTOK] Follower count: 847K followers exposed',
+      '[TIKTOK] Private videos: 23 drafts accessed',
+      '[TIKTOK] Analytics data: Demographics and earnings',
+      '[TIKTOK] Brand partnerships: $15K pending payments',
+      '[WARNING] Creator account theft destroys livelihoods',
+      '[COMPLETE] Content security awareness finished'
+    ]
+  }
+};
+
 export async function registerRoutes(app: Express): Promise<Server> {
   // Create a new terminal session
   app.post("/api/terminal/session", async (req, res) => {
@@ -288,11 +377,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
         output = "Available commands: 1-9, clear, help, modmenu\nUse the menu on the left for detailed descriptions";
       } else if (command === "modmenu") {
         output = "[MOD] ⚠️ ADVANCED MOD MENU ACTIVATED ⚠️\n[MOD] Warning: These are advanced educational simulations\n[MOD] Commands: a1-a9 or use the Advanced Mod Menu interface\n[MOD] Type 'help' to return to standard commands\n[MOD] Educational purposes only - Real usage is illegal!";
+      } else if (command === "accounthacker") {
+        output = "[ACCOUNT] ⚠️ SOCIAL MEDIA ACCOUNT HACKER MENU ⚠️\n[ACCOUNT] WARNING: Educational simulations only!\n[ACCOUNT] Available platforms:\n[ACCOUNT] • roblox - Roblox gaming platform\n[ACCOUNT] • google - Google/Gmail accounts\n[ACCOUNT] • facebook - Facebook/Meta social media\n[ACCOUNT] • snapchat - Snapchat multimedia app\n[ACCOUNT] • tiktok - TikTok content platform\n[ACCOUNT] Type the platform name to run simulation\n[WARNING] Real account hacking is a serious federal crime!";
       } else if (commands[command as keyof typeof commands]) {
         const commandObj = commands[command as keyof typeof commands];
         output = commandObj.simulate().join('\n');
       } else if (modMenuCommands[command as keyof typeof modMenuCommands]) {
         const commandObj = modMenuCommands[command as keyof typeof modMenuCommands];
+        output = commandObj.simulate().join('\n');
+      } else if (accountHackerCommands[command as keyof typeof accountHackerCommands]) {
+        const commandObj = accountHackerCommands[command as keyof typeof accountHackerCommands];
         output = commandObj.simulate().join('\n');
       } else if (command.trim()) {
         output = `[ERROR] Unknown command: ${command}. Type 'help' for available commands.`;

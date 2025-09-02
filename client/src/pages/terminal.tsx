@@ -83,6 +83,13 @@ const menuCommands: MenuCommand[] = [
     description: "Display system information",
     category: "INFO",
   },
+  {
+    id: "accounthacker",
+    name: "Account Hacker",
+    description: "⚠️ Social media breach simulations",
+    category: "ACCOUNT",
+    isWarning: true,
+  },
 ];
 
 const modMenuCommands: ModMenuCommand[] = [
@@ -156,6 +163,14 @@ const modMenuCommands: ModMenuCommand[] = [
     description: "Anonymous network exploration",
     category: "DARK",
     icon: "🕶️",
+    danger: true,
+  },
+  {
+    id: "accounthacker",
+    name: "Account Hacker",
+    description: "Social media platform breaches",
+    category: "ACCOUNT",
+    icon: "👤",
     danger: true,
   },
 ];
