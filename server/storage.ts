@@ -50,6 +50,8 @@ export class MemStorage implements IStorage {
       id,
       createdAt: now,
       updatedAt: now,
+      userId: insertSession.userId || null,
+      sessionData: insertSession.sessionData || {},
     };
     this.sessions.set(id, session);
     return session;
@@ -78,6 +80,8 @@ export class MemStorage implements IStorage {
       ...insertCommand,
       id,
       timestamp: new Date(),
+      sessionId: insertCommand.sessionId || null,
+      output: insertCommand.output || null,
     };
     this.commands.set(id, command);
     return command;

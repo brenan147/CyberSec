@@ -249,9 +249,9 @@ export default function Terminal() {
         ⚠️ EDUCATIONAL SIMULATION ONLY - NOT A REAL HACKING TOOL ⚠️
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] h-[calc(100vh-40px)]">
+      <div className="grid grid-cols-[300px_1fr] h-[calc(100vh-40px)]">
         {/* Sidebar Menu */}
-        <div className="bg-secondary border-r border-primary/30 p-4 lg:h-full overflow-y-auto">
+        <div className="bg-secondary border-r border-primary/30 p-4 h-full overflow-y-auto">
           <div className="mb-6">
             <h1 className="text-primary text-xl font-semibold terminal-glow mb-2">
               CyberSec Terminal
