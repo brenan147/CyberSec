@@ -90,6 +90,20 @@ const menuCommands: MenuCommand[] = [
     category: "ACCOUNT",
     isWarning: true,
   },
+  {
+    id: "bankhack",
+    name: "Bank Hacker",
+    description: "⚠️ Financial institution breach",
+    category: "BANK",
+    isWarning: true,
+  },
+  {
+    id: "cryptohack",
+    name: "Crypto Hacker",
+    description: "⚠️ Blockchain & wallet exploitation",
+    category: "CRYPTO",
+    isWarning: true,
+  },
 ];
 
 const modMenuCommands: ModMenuCommand[] = [
@@ -171,6 +185,22 @@ const modMenuCommands: ModMenuCommand[] = [
     description: "Social media platform breaches",
     category: "ACCOUNT",
     icon: "👤",
+    danger: true,
+  },
+  {
+    id: "bankhack",
+    name: "Bank Hacker",
+    description: "Financial system infiltration",
+    category: "BANK",
+    icon: "🏦",
+    danger: true,
+  },
+  {
+    id: "cryptohack",
+    name: "Crypto Hacker",
+    description: "Blockchain wallet exploitation",
+    category: "CRYPTO",
+    icon: "₿",
     danger: true,
   },
 ];

@@ -338,7 +338,75 @@ const accountHackerCommands = {
       '[TIKTOK] Content monetization: Full access granted',
       '[COMPLETE] Creator account hijacked'
     ]
+  },
+  'callofduty': {
+    name: 'Call of Duty Account Breach',
+    simulate: () => [
+      '[COD] Target: ProGamer_2024#7893',
+      '[COD] Method: Credential database leak exploitation',
+      '[COD] Activision account accessed',
+      '[COD] Battle.net integration compromised',
+      '[COD] Game statistics: 847 hours played',
+      '[COD] Weapon unlocks: All Damascus camos unlocked',
+      '[COD] COD Points balance: 12,450 CP',
+      '[COD] Battle Pass: Season 6 Tier 100 completed',
+      '[COD] Clan information: [ELITE] leadership role',
+      '[COD] Friends list: 156 gaming contacts accessed',
+      '[COMPLETE] Gaming account compromised'
+    ]
+  },
+  'twitter': {
+    name: 'Twitter/X Account Takeover',
+    simulate: () => [
+      '[TWITTER] Target: @influencer_2024',
+      '[TWITTER] Method: API key exploitation + OAuth bypass',
+      '[TWITTER] Account verification: Blue checkmark verified',
+      '[TWITTER] Follower count: 2.3M followers exposed',
+      '[TWITTER] DM access: 15,000+ private messages',
+      '[TWITTER] Tweet analytics: $50K+ monthly reach value',
+      '[TWITTER] Ad account: $25,000 spending limit accessed',
+      '[TWITTER] Connected apps: 47 third-party integrations',
+      '[TWITTER] Monetization: Super Follows and Tips enabled',
+      '[TWITTER] Content calendar: 3 months of scheduled posts',
+      '[COMPLETE] Social influence platform hijacked'
+    ]
   }
+};
+
+// Bank hacking simulation
+const bankHackingCommand = {
+  simulate: () => [
+    '[BANK] Initializing financial institution penetration...',
+    '[BANK] Target: First National Bank of Commerce',
+    '[BANK] Method: SWIFT network infiltration',
+    '[BANK] Firewall bypass: Multiple security layers compromised',
+    '[BANK] Database access: Customer records database breached',
+    '[BANK] Account access: 2.4 million customer accounts',
+    '[BANK] Transaction logs: $847M in daily transfers monitored',
+    '[BANK] Wire transfers: International routing capabilities',
+    '[BANK] Crypto wallet integration: Digital asset access',
+    '[BANK] Federal reserve connection: Central banking access',
+    '[BANK] ATM network: 15,000 machines under control',
+    '[COMPLETE] Financial infrastructure compromised'
+  ]
+};
+
+// Cryptocurrency hacking simulation
+const cryptoHackingCommand = {
+  simulate: () => [
+    '[CRYPTO] Blockchain exploitation framework initiated...',
+    '[CRYPTO] Target: Multi-exchange arbitrage bot',
+    '[CRYPTO] Method: Smart contract vulnerability exploitation',
+    '[CRYPTO] Wallet access: 847 BTC ($52.3M USD)',
+    '[CRYPTO] Ethereum holdings: 12,450 ETH ($28.7M USD)',
+    '[CRYPTO] Altcoin portfolio: $15.2M in various tokens',
+    '[CRYPTO] DeFi protocols: Yield farming positions accessed',
+    '[CRYPTO] NFT collection: 156 high-value NFTs compromised',
+    '[CRYPTO] Mining operations: 2,400 ASIC miners controlled',
+    '[CRYPTO] Cold storage: Hardware wallet seed phrases extracted',
+    '[CRYPTO] Exchange APIs: Trading bots reprogrammed',
+    '[COMPLETE] Digital asset empire hijacked'
+  ]
 };
 
 export async function registerRoutes(app: Express): Promise<Server> {
@@ -373,13 +441,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
       } else if (command === "modmenu") {
         output = "[MOD] ⚠️ ADVANCED MOD MENU ACTIVATED ⚠️\n[MOD] Warning: These are advanced educational simulations\n[MOD] Commands: a1-a9 or use the Advanced Mod Menu interface\n[MOD] Type 'help' to return to standard commands\n[MOD] Educational purposes only - Real usage is illegal!";
       } else if (command === "10" || command === "accounthacker") {
-        output = "[ACCOUNT] SOCIAL MEDIA ACCOUNT HACKER MENU\n[ACCOUNT] Available platforms:\n[ACCOUNT] • roblox - Roblox gaming platform\n[ACCOUNT] • google - Google/Gmail accounts\n[ACCOUNT] • facebook - Facebook/Meta social media\n[ACCOUNT] • snapchat - Snapchat multimedia app\n[ACCOUNT] • tiktok - TikTok content platform\n[ACCOUNT] Type the platform name to execute breach";
+        output = "[ACCOUNT] SOCIAL MEDIA ACCOUNT HACKER MENU\n[ACCOUNT] Available platforms:\n[ACCOUNT] • roblox - Roblox gaming platform\n[ACCOUNT] • google - Google/Gmail accounts\n[ACCOUNT] • facebook - Facebook/Meta social media\n[ACCOUNT] • snapchat - Snapchat multimedia app\n[ACCOUNT] • tiktok - TikTok content platform\n[ACCOUNT] • callofduty - Call of Duty gaming\n[ACCOUNT] • twitter - Twitter/X social media\n[ACCOUNT] Type the platform name to execute breach";
       } else if (commands[command as keyof typeof commands]) {
         const commandObj = commands[command as keyof typeof commands];
         output = commandObj.simulate().join('\n');
       } else if (modMenuCommands[command as keyof typeof modMenuCommands]) {
         const commandObj = modMenuCommands[command as keyof typeof modMenuCommands];
         output = commandObj.simulate().join('\n');
+      } else if (command === "bankhack") {
+        output = bankHackingCommand.simulate().join('\n');
+      } else if (command === "cryptohack") {
+        output = cryptoHackingCommand.simulate().join('\n');
       } else if (accountHackerCommands[command as keyof typeof accountHackerCommands]) {
         const commandObj = accountHackerCommands[command as keyof typeof accountHackerCommands];
         output = commandObj.simulate().join('\n');
