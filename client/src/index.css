@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --card: hsl(228, 9.8%, 10%);
+  --card-foreground: hsl(0, 0%, 85.1%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(120, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 10.2%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 40%);
+  --muted-foreground: hsl(0, 0%, 40%);
+  --accent: hsl(180, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(120, 100%, 50%, 0.3);
+  --input: hsl(207.7%, 27.7%, 18.4%);
+  --ring: hsl(120, 100%, 50%);
+  --chart-1: hsl(120, 100%, 50%);
+  --chart-2: hsl(160, 100%, 36.1%);
+  --chart-3: hsl(42, 92.8%, 56.3%);
+  --chart-4: hsl(147.1, 78.5%, 42%);
+  --chart-5: hsl(341.5, 75.2%, 51%);
+  --sidebar-background: hsl(0, 0%, 10.2%);
+  --sidebar-foreground: hsl(0, 0%, 85.1%);
+  --sidebar-primary: hsl(120, 100%, 50%);
+  --sidebar-primary-foreground: hsl(0, 0%, 0%);
+  --sidebar-accent: hsl(180, 100%, 50%);
+  --sidebar-accent-foreground: hsl(0, 0%, 0%);
+  --sidebar-border: hsl(120, 100%, 50%, 0.3);
+  --sidebar-ring: hsl(120, 100%, 50%);
+  --terminal: hsl(0, 0%, 3.9%);
+  --font-sans: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  --font-serif: Georgia, serif;
+  --font-mono: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(0, 0%, 100%);
+  --card: hsl(228, 9.8%, 10%);
+  --card-foreground: hsl(0, 0%, 85.1%);
+  --popover: hsl(0, 0%, 0%);
+  --popover-foreground: hsl(0, 0%, 100%);
+  --primary: hsl(120, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 10.2%);
+  --secondary-foreground: hsl(0, 0%, 100%);
+  --muted: hsl(0, 0%, 40%);
+  --muted-foreground: hsl(0, 0%, 40%);
+  --accent: hsl(180, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --border: hsl(120, 100%, 50%, 0.3);
+  --input: hsl(207.7%, 27.7%, 18.4%);
+  --ring: hsl(120, 100%, 50%);
+  --terminal: hsl(0, 0%, 3.9%);
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .terminal-glow {
+    text-shadow: 0 0 5px currentColor;
+  }
+
+  .typing {
+    border-right: 2px solid hsl(var(--primary));
+    animation: blink 1s infinite;
+  }
+
+  .menu-item:hover {
+    background: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+  }
+
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+}
+
+@keyframes blink {
+  0%, 50% { 
+    border-color: hsl(var(--primary)); 
+  }
+  51%, 100% { 
+    border-color: transparent; 
+  }
+}
