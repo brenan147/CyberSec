@@ -4,6 +4,137 @@ import { storage } from "./storage";
 import { insertCommandSchema } from "@shared/schema";
 import { z } from "zod";
 
+// Advanced mod menu tools
+const modMenuCommands = {
+  'a1': {
+    name: 'SQL Injection Tester',
+    simulate: () => [
+      '[MOD] ⚠️ ADVANCED MOD MENU - EDUCATIONAL ONLY ⚠️',
+      '[SQL] Initializing SQL injection testing suite...',
+      '[SQL] Target: example-db.com/login.php',
+      '[SQL] Testing payload: \' OR 1=1--',
+      '[SQL] Response: Authentication bypassed (SIMULATION)',
+      '[SQL] Testing payload: UNION SELECT * FROM users--',
+      '[SQL] Response: Database structure revealed (SIMULATION)',
+      '[SQL] Vulnerability assessment: HIGH RISK (simulated)',
+      '[WARNING] Real SQL injection is illegal and unethical',
+      '[COMPLETE] Educational demonstration finished'
+    ]
+  },
+  'a2': {
+    name: 'Advanced Keylogger Sim',
+    simulate: () => [
+      '[MOD] Keystroke monitoring simulation activated',
+      '[KEY] Initializing advanced keylogger module...',
+      '[KEY] Target process: notepad.exe (SIMULATION)',
+      '[KEY] Captured: "password123" (FAKE DATA)',
+      '[KEY] Captured: "user@email.com" (FAKE DATA)',
+      '[KEY] Screenshot taken: desktop_001.jpg (SIMULATED)',
+      '[KEY] Data encrypted with AES-256',
+      '[WARNING] Keylogging without consent is illegal',
+      '[COMPLETE] Educational simulation complete'
+    ]
+  },
+  'a3': {
+    name: 'Social Engineering Kit',
+    simulate: () => [
+      '[MOD] Social engineering simulation framework',
+      '[SE] Loading psychological manipulation tactics...',
+      '[SE] Phishing template generator: ACTIVE (SIMULATION)',
+      '[SE] Voice cloning module: READY (FAKE)',
+      '[SE] Deepfake detection: 12 samples analyzed',
+      '[SE] Trust exploitation vectors: 8 methods loaded',
+      '[SE] Success rate estimation: 73% (THEORETICAL)',
+      '[WARNING] Social engineering causes real harm to victims',
+      '[COMPLETE] Educational awareness training finished'
+    ]
+  },
+  'a4': {
+    name: 'Zero-Day Exploit Scanner',
+    simulate: () => [
+      '[MOD] Zero-day vulnerability research mode',
+      '[EXPLOIT] Scanning for unknown vulnerabilities...',
+      '[EXPLOIT] CVE-2024-XXXX: Buffer overflow detected (SIMULATION)',
+      '[EXPLOIT] Memory corruption vector found (FAKE)',
+      '[EXPLOIT] Privilege escalation possible (THEORETICAL)',
+      '[EXPLOIT] Payload generation: /bin/sh shellcode',
+      '[EXPLOIT] Success probability: 89% (SIMULATED)',
+      '[WARNING] Exploiting zero-days without permission is criminal',
+      '[COMPLETE] Research simulation terminated'
+    ]
+  },
+  'a5': {
+    name: 'Ransomware Simulator',
+    simulate: () => [
+      '[MOD] ⚠️ RANSOMWARE EDUCATION MODULE ⚠️',
+      '[RANSOM] Encryption simulation initializing...',
+      '[RANSOM] Target files: *.docx, *.xlsx, *.pdf (SIMULATION)',
+      '[RANSOM] AES-256 encryption: 1,247 files processed (FAKE)',
+      '[RANSOM] Ransom note generated: YOUR_FILES_ARE_ENCRYPTED.txt',
+      '[RANSOM] Bitcoin wallet: 1A2B3C4D5E6F... (EXAMPLE ONLY)',
+      '[RANSOM] Decryption key hidden in secure vault',
+      '[WARNING] Ransomware destroys lives and businesses',
+      '[COMPLETE] Educational demonstration only'
+    ]
+  },
+  'a6': {
+    name: 'Advanced Persistent Threat',
+    simulate: () => [
+      '[MOD] APT simulation - Nation-state tactics',
+      '[APT] Establishing covert command & control...',
+      '[APT] Lateral movement: Domain controller accessed (FAKE)',
+      '[APT] Data exfiltration: 2.3GB corporate secrets (SIMULATION)',
+      '[APT] Persistence mechanism: Registry keys modified',
+      '[APT] Anti-forensics: Event logs cleared',
+      '[APT] Dormancy period: 127 days estimated',
+      '[WARNING] APT attacks threaten national security',
+      '[COMPLETE] Threat intelligence briefing finished'
+    ]
+  },
+  'a7': {
+    name: 'Cryptocurrency Miner',
+    simulate: () => [
+      '[MOD] Cryptojacking simulation framework',
+      '[CRYPTO] Deploying stealth mining software...',
+      '[CRYPTO] Target cryptocurrency: Monero (XMR)',
+      '[CRYPTO] CPU utilization: 85% (background mining)',
+      '[CRYPTO] Hash rate: 1,247 H/s (SIMULATED)',
+      '[CRYPTO] Revenue generated: $0.23/day (FAKE)',
+      '[CRYPTO] Detection evasion: Process name spoofing',
+      '[WARNING] Cryptojacking steals electricity and computing power',
+      '[COMPLETE] Resource hijacking awareness demo'
+    ]
+  },
+  'a8': {
+    name: 'IoT Botnet Controller',
+    simulate: () => [
+      '[MOD] IoT botnet simulation - Mirai variant',
+      '[BOTNET] Scanning for vulnerable IoT devices...',
+      '[BOTNET] Compromised devices: 15,847 cameras (SIMULATION)',
+      '[BOTNET] Compromised devices: 8,923 routers (FAKE)',
+      '[BOTNET] Command & control server: operational',
+      '[BOTNET] DDoS capacity: 2.4 Tbps estimated',
+      '[BOTNET] Propagation rate: 1,200 devices/hour',
+      '[WARNING] IoT botnets enable massive cyber attacks',
+      '[COMPLETE] Botnet awareness training complete'
+    ]
+  },
+  'a9': {
+    name: 'Dark Web Navigator',
+    simulate: () => [
+      '[MOD] Dark web exploration simulation',
+      '[DARK] Initializing Tor browser environment...',
+      '[DARK] Accessing .onion services (EDUCATIONAL URLS ONLY)',
+      '[DARK] Marketplace scan: DarkMarket v3.2 (SIMULATION)',
+      '[DARK] Available services: Stolen credentials, malware',
+      '[DARK] Bitcoin mixer: 15.7 BTC processed (FAKE TRANSACTION)',
+      '[DARK] Anonymity level: Advanced (Tor + VPN)',
+      '[WARNING] Dark web contains illegal and harmful content',
+      '[COMPLETE] Cybersecurity awareness session finished'
+    ]
+  }
+};
+
 const commands = {
   '1': {
     name: 'IP Finder/Tracker',
@@ -154,9 +285,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
       if (command === "clear") {
         output = "[SYSTEM] Terminal cleared";
       } else if (command === "help") {
-        output = "Available commands: 1-9, clear, help\nUse the menu on the left for detailed descriptions";
+        output = "Available commands: 1-9, clear, help, modmenu\nUse the menu on the left for detailed descriptions";
+      } else if (command === "modmenu") {
+        output = "[MOD] ⚠️ ADVANCED MOD MENU ACTIVATED ⚠️\n[MOD] Warning: These are advanced educational simulations\n[MOD] Commands: a1-a9 or use the Advanced Mod Menu interface\n[MOD] Type 'help' to return to standard commands\n[MOD] Educational purposes only - Real usage is illegal!";
       } else if (commands[command as keyof typeof commands]) {
         const commandObj = commands[command as keyof typeof commands];
+        output = commandObj.simulate().join('\n');
+      } else if (modMenuCommands[command as keyof typeof modMenuCommands]) {
+        const commandObj = modMenuCommands[command as keyof typeof modMenuCommands];
         output = commandObj.simulate().join('\n');
       } else if (command.trim()) {
         output = `[ERROR] Unknown command: ${command}. Type 'help' for available commands.`;

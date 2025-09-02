@@ -18,6 +18,15 @@ interface MenuCommand {
   isWarning?: boolean;
 }
 
+interface ModMenuCommand {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  icon: string;
+  danger: boolean;
+}
+
 const menuCommands: MenuCommand[] = [
   {
     id: "1",
@@ -76,6 +85,81 @@ const menuCommands: MenuCommand[] = [
   },
 ];
 
+const modMenuCommands: ModMenuCommand[] = [
+  {
+    id: "a1",
+    name: "SQL Injection Tester",
+    description: "Database vulnerability testing",
+    category: "EXPLOIT",
+    icon: "🗄️",
+    danger: true,
+  },
+  {
+    id: "a2",
+    name: "Advanced Keylogger Sim",
+    description: "Keystroke monitoring simulation",
+    category: "MONITOR",
+    icon: "⌨️",
+    danger: true,
+  },
+  {
+    id: "a3",
+    name: "Social Engineering Kit",
+    description: "Psychological manipulation tactics",
+    category: "SOCIAL",
+    icon: "🎭",
+    danger: true,
+  },
+  {
+    id: "a4",
+    name: "Zero-Day Exploit Scanner",
+    description: "Unknown vulnerability research",
+    category: "0DAY",
+    icon: "🎯",
+    danger: true,
+  },
+  {
+    id: "a5",
+    name: "Ransomware Simulator",
+    description: "File encryption demonstration",
+    category: "RANSOM",
+    icon: "🔒",
+    danger: true,
+  },
+  {
+    id: "a6",
+    name: "Advanced Persistent Threat",
+    description: "Nation-state attack simulation",
+    category: "APT",
+    icon: "👤",
+    danger: true,
+  },
+  {
+    id: "a7",
+    name: "Cryptocurrency Miner",
+    description: "Cryptojacking simulation",
+    category: "CRYPTO",
+    icon: "⛏️",
+    danger: true,
+  },
+  {
+    id: "a8",
+    name: "IoT Botnet Controller",
+    description: "Device network simulation",
+    category: "BOTNET",
+    icon: "🌐",
+    danger: true,
+  },
+  {
+    id: "a9",
+    name: "Dark Web Navigator",
+    description: "Anonymous network exploration",
+    category: "DARK",
+    icon: "🕶️",
+    danger: true,
+  },
+];
+
 export default function Terminal() {
   const [sessionId, setSessionId] = useState<string | null>(null);
   const [terminalLines, setTerminalLines] = useState<TerminalLine[]>([]);
@@ -84,6 +168,7 @@ export default function Terminal() {
   const [historyIndex, setHistoryIndex] = useState(-1);
   const [currentTime, setCurrentTime] = useState(new Date());
   const [isExecuting, setIsExecuting] = useState(false);
+  const [showModMenu, setShowModMenu] = useState(false);
   
   const terminalOutputRef = useRef<HTMLDivElement>(null);
   const commandInputRef = useRef<HTMLInputElement>(null);
@@ -121,6 +206,14 @@ export default function Terminal() {
       if (result.command === "clear") {
         setTerminalLines([]);
         addInitialMessages();
+      } else if (result.command === "modmenu") {
+        setShowModMenu(true);
+        const outputLines = result.output.split('\n');
+        outputLines.forEach((line: string, index: number) => {
+          setTimeout(() => {
+            addTerminalLine(line, false);
+          }, index * 150);
+        });
       } else {
         const outputLines = result.output.split('\n');
         outputLines.forEach((line: string, index: number) => {
@@ -262,43 +355,104 @@ export default function Terminal() {
             </div>
           </div>
 
-          <div className="space-y-2">
-            <h2 className="text-accent text-sm font-semibold mb-3 border-b border-accent/30 pb-1">
-              AVAILABLE TOOLS
-            </h2>
+          {/* Mode Toggle */}
+          <div className="mb-4 flex space-x-2">
+            <button
+              data-testid="toggle-basic-menu"
+              onClick={() => setShowModMenu(false)}
+              className={`px-3 py-1 text-xs rounded transition-all ${
+                !showModMenu
+                  ? "bg-primary text-black"
+                  : "bg-secondary text-muted hover:bg-primary/20"
+              }`}
+            >
+              Basic Tools
+            </button>
+            <button
+              data-testid="toggle-mod-menu"
+              onClick={() => setShowModMenu(true)}
+              className={`px-3 py-1 text-xs rounded transition-all ${
+                showModMenu
+                  ? "bg-red-500 text-white"
+                  : "bg-secondary text-muted hover:bg-red-500/20"
+              }`}
+            >
+              🔓 Mod Menu
+            </button>
+          </div>
 
-            {menuCommands.map((cmd) => (
-              <button
-                key={cmd.id}
-                data-testid={`menu-command-${cmd.id}`}
-                onClick={() => executeCommand(cmd.id)}
-                className={`menu-item w-full text-left p-3 rounded border transition-all duration-200 group ${
-                  cmd.isWarning
-                    ? "border-red-500/20 bg-red-900/10"
-                    : "border-primary/20"
-                }`}
-                disabled={isExecuting}
-              >
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`group-hover:text-white ${
-                      cmd.isWarning ? "text-red-400" : "text-primary"
+          <div className="space-y-2">
+            {!showModMenu ? (
+              <>
+                <h2 className="text-accent text-sm font-semibold mb-3 border-b border-accent/30 pb-1">
+                  AVAILABLE TOOLS
+                </h2>
+
+                {menuCommands.map((cmd) => (
+                  <button
+                    key={cmd.id}
+                    data-testid={`menu-command-${cmd.id}`}
+                    onClick={() => executeCommand(cmd.id)}
+                    className={`menu-item w-full text-left p-3 rounded border transition-all duration-200 group ${
+                      cmd.isWarning
+                        ? "border-red-500/20 bg-red-900/10"
+                        : "border-primary/20"
                     }`}
+                    disabled={isExecuting}
                   >
-                    {cmd.id}
-                  </span>
-                  <span
-                    className={`text-xs ${
-                      cmd.isWarning ? "text-red-300" : "text-accent"
-                    }`}
-                  >
-                    {cmd.category}
-                  </span>
+                    <div className="flex items-center justify-between">
+                      <span
+                        className={`group-hover:text-white ${
+                          cmd.isWarning ? "text-red-400" : "text-primary"
+                        }`}
+                      >
+                        {cmd.id}
+                      </span>
+                      <span
+                        className={`text-xs ${
+                          cmd.isWarning ? "text-red-300" : "text-accent"
+                        }`}
+                      >
+                        {cmd.category}
+                      </span>
+                    </div>
+                    <div className="text-sm mt-1">{cmd.name}</div>
+                    <div className="text-xs text-muted mt-1">{cmd.description}</div>
+                  </button>
+                ))}
+              </>
+            ) : (
+              <>
+                <h2 className="text-red-400 text-sm font-semibold mb-3 border-b border-red-400/30 pb-1 animate-pulse">
+                  ⚠️ ADVANCED MOD MENU ⚠️
+                </h2>
+                <div className="text-xs text-red-300 mb-3 p-2 bg-red-900/20 rounded border border-red-500/30">
+                  Educational simulations only. Real usage is illegal and harmful.
                 </div>
-                <div className="text-sm mt-1">{cmd.name}</div>
-                <div className="text-xs text-muted mt-1">{cmd.description}</div>
-              </button>
-            ))}
+
+                {modMenuCommands.map((cmd) => (
+                  <button
+                    key={cmd.id}
+                    data-testid={`mod-command-${cmd.id}`}
+                    onClick={() => executeCommand(cmd.id)}
+                    className="menu-item w-full text-left p-3 rounded border border-red-500/30 bg-red-900/10 transition-all duration-200 group hover:bg-red-900/20"
+                    disabled={isExecuting}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="text-red-400 group-hover:text-red-300 flex items-center space-x-2">
+                        <span className="text-lg">{cmd.icon}</span>
+                        <span>{cmd.id.toUpperCase()}</span>
+                      </span>
+                      <span className="text-xs text-red-300">
+                        {cmd.category}
+                      </span>
+                    </div>
+                    <div className="text-sm mt-1 text-red-200">{cmd.name}</div>
+                    <div className="text-xs text-red-300/70 mt-1">{cmd.description}</div>
+                  </button>
+                ))}
+              </>
+            )}
 
             <button
               data-testid="menu-command-clear"
